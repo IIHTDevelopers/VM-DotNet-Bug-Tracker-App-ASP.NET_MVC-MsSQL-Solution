@@ -1,0 +1,272 @@
+﻿
+using BugTrackerApp.DAL;
+using BugTrackerApp.DAL.Interface;
+using BugTrackerApp.DAL.Repository;
+using BugTrackerApp.Models;
+using Moq;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace BugTrackerApp.Tests.TestCases
+{
+    public class BoundaryTests
+    {
+        private readonly ITestOutputHelper _output;
+        private readonly IBugTrackerInterface _bugTrackerService;
+        public readonly Mock<IBugTrackerRepository> bugtrackerservice = new Mock<IBugTrackerRepository>();
+        private readonly Bug _Bug;
+        private readonly IEnumerable<Bug> BugList;
+
+        private static string type = "Boundary";
+
+        public BoundaryTests(ITestOutputHelper output)
+        {
+            _bugTrackerService = new BugTrackerService(bugtrackerservice.Object);
+            _output = output;
+            _Bug = new Bug
+            {
+                 Id = 1,
+                Date = DateTime.Now,
+                BugName = "Exercise",
+                IsCompleted = true,
+                Notes = "30 minutes of jogging in the park."
+            };
+            BugList = new List<Bug>
+        {
+            new Bug
+            {
+                Id = 1,
+                Date = DateTime.Now,
+                BugName = "Exercise",
+                IsCompleted = true,
+                Notes = "30 minutes of jogging in the park."
+            },
+            new Bug
+            {
+                Id = 2,
+                Date = DateTime.Now,
+                BugName = "Exercise",
+                IsCompleted = true,
+                Notes = "30 minutes of jogging in the park."
+            },
+        };
+
+        }
+
+        [Fact]
+        public async Task<bool> Testfor_Id_NotNull()
+        {
+            //Arrange
+            var res = false;
+            string testName; string status;
+            testName = CallAPI.GetCurrentMethodName();
+            int id = 1;
+
+            //Action
+            try
+            {
+                bugtrackerservice.Setup(repos => repos.GetBugByID(_Bug.Id)).Returns(_Bug);
+                var result = _bugTrackerService.GetBugByID(_Bug.Id);
+
+                //Assertion
+                if (result!= null)
+                {
+                    res = true;
+                }
+            }
+            catch (Exception)
+            {
+                //Assert
+                status = Convert.ToString(res);
+                _output.WriteLine(testName + ":Failed");
+                await CallAPI.saveTestResult(testName, status, type);
+                return false;
+            }
+            status = Convert.ToString(res);
+            if (res == true)
+            {
+                _output.WriteLine(testName + ":Passed");
+            }
+            else
+            {
+                _output.WriteLine(testName + ":Failed");
+            }
+            await CallAPI.saveTestResult(testName, status, type);
+            return res;
+        }
+
+        [Fact]
+        public async Task<bool> Testfor_Date_NotNull()
+        {
+            //Arrange
+            var res = false;
+            string testName; string status;
+            testName = CallAPI.GetCurrentMethodName();
+            int id = 1;
+
+            //Action
+            try
+            {
+                bugtrackerservice.Setup(repos => repos.GetBugByID(_Bug.Id)).Returns(_Bug);
+                var result = _bugTrackerService.GetBugByID(_Bug.Id);
+
+                //Assertion
+                if (result!= null)
+                {
+                    res = true;
+                }
+            }
+            catch (Exception)
+            {
+                //Assert
+                status = Convert.ToString(res);
+                _output.WriteLine(testName + ":Failed");
+                await CallAPI.saveTestResult(testName, status, type);
+                return false;
+            }
+            status = Convert.ToString(res);
+            if (res == true)
+            {
+                _output.WriteLine(testName + ":Passed");
+            }
+            else
+            {
+                _output.WriteLine(testName + ":Failed");
+            }
+            await CallAPI.saveTestResult(testName, status, type);
+            return res;
+        }
+
+        [Fact]
+        public async Task<bool> Testfor_BugName_NotNull()
+        {
+            //Arrange
+            var res = false;
+            string testName; string status;
+            testName = CallAPI.GetCurrentMethodName();
+            int id = 1;
+
+            //Action
+            try
+            {
+                bugtrackerservice.Setup(repos => repos.GetBugByID(_Bug.Id)).Returns(_Bug);
+                var result = _bugTrackerService.GetBugByID(_Bug.Id);
+
+                //Assertion
+                if (result!=null)
+                {
+                    res = true;
+                }
+            }
+            catch (Exception)
+            {
+                //Assert
+                status = Convert.ToString(res);
+                _output.WriteLine(testName + ":Failed");
+                await CallAPI.saveTestResult(testName, status, type);
+                return false;
+            }
+            status = Convert.ToString(res);
+            if (res == true)
+            {
+                _output.WriteLine(testName + ":Passed");
+            }
+            else
+            {
+                _output.WriteLine(testName + ":Failed");
+            }
+            await CallAPI.saveTestResult(testName, status, type);
+            return res;
+        }
+
+        [Fact]
+        public async Task<bool> Testfor_IsCompleted_NotNull()
+        {
+            //Arrange
+            var res = false;
+            string testName; string status;
+            testName = CallAPI.GetCurrentMethodName();
+            int id = 1;
+
+            //Action
+            try
+            {
+                bugtrackerservice.Setup(repos => repos.GetBugByID(_Bug.Id)).Returns(_Bug);
+                var result = _bugTrackerService.GetBugByID(_Bug.Id);
+               
+
+                //Assertion
+                if (result!= null)
+                {
+                    res = true;
+                }
+            }
+            catch (Exception)
+            {
+                //Assert
+                status = Convert.ToString(res);
+                _output.WriteLine(testName + ":Failed");
+                await CallAPI.saveTestResult(testName, status, type);
+                return false;
+            }
+            status = Convert.ToString(res);
+            if (res == true)
+            {
+                _output.WriteLine(testName + ":Passed");
+            }
+            else
+            {
+                _output.WriteLine(testName + ":Failed");
+            }
+            await CallAPI.saveTestResult(testName, status, type);
+            return res;
+        }
+
+        [Fact]
+        public async Task<bool> Testfor_Notes_NotNull()
+        {
+            //Arrange
+            var res = false;
+            string testName; string status;
+            testName = CallAPI.GetCurrentMethodName();
+            int id = 1;
+
+            //Action
+            try
+            {
+                bugtrackerservice.Setup(repos => repos.GetBugByID(_Bug.Id)).Returns(_Bug);
+                var result = _bugTrackerService.GetBugByID(_Bug.Id);
+
+
+                //Assertion
+                if (result != null)
+                {
+                    res = true;
+                }
+            }
+            catch (Exception)
+            {
+                //Assert
+                status = Convert.ToString(res);
+                _output.WriteLine(testName + ":Failed");
+                await CallAPI.saveTestResult(testName, status, type);
+                return false;
+            }
+            status = Convert.ToString(res);
+            if (res == true)
+            {
+                _output.WriteLine(testName + ":Passed");
+            }
+            else
+            {
+                _output.WriteLine(testName + ":Failed");
+            }
+            await CallAPI.saveTestResult(testName, status, type);
+            return res;
+        }
+
+    }
+}
